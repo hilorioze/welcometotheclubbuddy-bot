@@ -23,6 +23,8 @@ RUN python -m venv $VIRTUAL_ENV
 
 ARG POETRY_VERSION=1.8.2
 
+RUN apk add --no-cache git gcc musl-dev libffi-dev
+
 RUN pip install poetry==${POETRY_VERSION}
 
 RUN poetry install -E speedups  # poetry will install in $VIRTUAL_ENV because it thinks we are using virtualenv https://github.com/python-poetry/poetry/blob/2ad0d938854fae3c5e3e8b49e4414cef4687fb60/src/poetry/utils/env/env_manager.py#L289
