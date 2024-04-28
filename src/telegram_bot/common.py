@@ -1,0 +1,1 @@
+JINJA_MIDDLEWARE_KEY = "jinja"

@@ -1,0 +1,63 @@
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+    #   Check for files that contain merge conflict strings
+    -   id: check-merge-conflict
+        stages: [commit, push]
+
+
+    #   Checks python files for correct syntax
+    -   id: check-ast
+        stages: [commit]
+
+
+    #   Add newlines to the end of files
+    -   id: end-of-file-fixer
+        stages: [commit]
+
+
+    #   Remove trailing whitespaces
+    -   id: trailing-whitespace
+        stages: [commit]
+
+-   repo: local
+    hooks:
+    -   id: black
+        name: black
+
+        entry: black
+        args: []
+        language: system
+
+        pass_filenames: true
+        types: [python]
+
+
+    -   id: ruff-fix
+        name: ruff check & fix
+
+        entry: ruff check --select I --select F401 --select COM --select UP --fix --exit-non-zero-on-fix
+        language: system
+
+        pass_filenames: true
+        types: [python]
+
+
+    -   id: ruff
+        name: ruff check
+
+        entry: ruff check
+        language: system
+
+        pass_filenames: true
+        types: [python]
+
+
+    -   id: mypy
+        name: mypy check
+
+        entry: mypy src/
+        language: system
+
+        pass_filenames: false

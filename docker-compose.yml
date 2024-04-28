@@ -1,0 +1,22 @@
+services:
+  telegram-bot:
+    build: .
+    command: telegram_bot
+
+    restart: unless-stopped
+
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+
+    networks:
+      - welcometotheclubbuddy-bot-network
+
+    env_file:
+      - .env
+
+networks:
+  welcometotheclubbuddy-bot-network:
+    name: welcometotheclubbuddy-bot-network
+    external: false
