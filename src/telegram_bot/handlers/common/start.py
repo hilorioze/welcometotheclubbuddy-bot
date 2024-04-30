@@ -17,7 +17,7 @@ router = Router(name=__name__)
 
 @router.message(CommandStart())
 async def start_handler(message: Message, bot: Bot, **kwargs):
-    bot_username: str | None = (await bot.get_me()).username
+    bot_username: str | None = (await bot.me()).username
     reply_markup: InlineKeyboardMarkup | ReplyKeyboardMarkup | None = (
         InlineKeyboardBuilder().add(add_to_chat_button(bot_username)).as_markup()
         if bot_username
